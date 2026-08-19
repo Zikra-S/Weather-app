@@ -1,208 +1,234 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Weather Now</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Now</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=DM+Sans:wght@300;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=DM+Sans:wght@300;500;600;700&display=swap"
+      rel="stylesheet" />
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            neutral: {
-              900: 'hsl(243, 96%, 9%)',
-              800: 'hsl(243, 27%, 20%)',
-              700: 'hsl(243, 23%, 24%)',
-              600: 'hsl(243, 23%, 30%)',
-              300: 'hsl(240, 6%, 70%)',
-              200: 'hsl(250, 6%, 84%)',
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              neutral: {
+                900: "hsl(243, 96%, 9%)",
+                800: "hsl(243, 27%, 20%)",
+                700: "hsl(243, 23%, 24%)",
+                600: "hsl(243, 23%, 30%)",
+                300: "hsl(240, 6%, 70%)",
+                200: "hsl(250, 6%, 84%)",
+              },
+              blue: {
+                500: "hsl(233, 67%, 56%)",
+                700: "hsl(248, 70%, 36%)",
+              },
             },
-            blue: {
-              500: 'hsl(233, 67%, 56%)',
-              700: 'hsl(248, 70%, 36%)',
+            fontFamily: {
+              sans: ["DM Sans", "sans-serif"],
+              display: ["Bricolage Grotesque", "sans-serif"],
             },
-            orange: {
-              500: 'hsl(28, 100%, 52%)',
-            }
           },
-          fontFamily: {
-            sans: ['DM Sans', 'sans-serif'],
-            display: ['Bricolage Grotesque', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-</head>
-<body class="bg-neutral-900 text-white min-h-screen font-sans antialiased">
-
-  <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-16 py-6 lg:py-10">
-
-    <!-- Header -->
-    <header class="flex items-center justify-between mb-10 lg:mb-14">
-      <div class="flex items-center gap-2.5">
-        <img src="assets/images/logo.svg" alt="Weather Now logo" class="w-8 h-8">
-        <span class="font-display text-xl font-bold tracking-tight">Weather Now</span>
-      </div>
-
-      <div class="relative">
-        <button id="unitsBtn" class="flex items-center gap-2 bg-neutral-800 hover:bg-neutral-700 px-4 py-2.5 rounded-lg text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-blue-500">
-          <img src="assets/images/icon-units.svg" alt="" class="w-4 h-4">
-          Units
-          <svg class="w-4 h-4 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-          </svg>
-        </button>
-
-        <div id="unitsMenu" class="hidden absolute right-0 mt-2 w-64 bg-neutral-800 border border-neutral-600 rounded-xl shadow-2xl z-50 p-4 space-y-4">
-          <div>
-            <p class="text-xs text-neutral-300 mb-2 font-medium">Temperature</p>
-            <div class="flex gap-2">
-              <button data-unit="temp" data-value="celsius" class="unit-btn flex-1 py-2 rounded-lg text-sm font-medium bg-blue-500 text-white">°C</button>
-              <button data-unit="temp" data-value="fahrenheit" class="unit-btn flex-1 py-2 rounded-lg text-sm font-medium bg-neutral-700 hover:bg-neutral-600">°F</button>
-            </div>
-          </div>
-          <div>
-            <p class="text-xs text-neutral-300 mb-2 font-medium">Wind Speed</p>
-            <div class="flex gap-2">
-              <button data-unit="wind" data-value="kmh" class="unit-btn flex-1 py-2 rounded-lg text-sm font-medium bg-blue-500 text-white">km/h</button>
-              <button data-unit="wind" data-value="mph" class="unit-btn flex-1 py-2 rounded-lg text-sm font-medium bg-neutral-700 hover:bg-neutral-600">mph</button>
-            </div>
-          </div>
-          <div>
-            <p class="text-xs text-neutral-300 mb-2 font-medium">Precipitation</p>
-            <div class="flex gap-2">
-              <button data-unit="precip" data-value="mm" class="unit-btn flex-1 py-2 rounded-lg text-sm font-medium bg-blue-500 text-white">mm</button>
-              <button data-unit="precip" data-value="inch" class="unit-btn flex-1 py-2 rounded-lg text-sm font-medium bg-neutral-700 hover:bg-neutral-600">in</button>
-            </div>
-          </div>
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-neutral-900 text-white min-h-screen font-sans">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-16 py-8 lg:py-12">
+      <header class="flex items-center justify-between mb-12 lg:mb-16">
+        <div class="flex items-center gap-3">
+          <img src="assets/images/logo.svg" alt="Weather Now" class="w-48" />
         </div>
-      </div>
-    </header>
 
-    <!-- Title -->
-    <h1 class="font-display text-[2.5rem] sm:text-5xl lg:text-[3.25rem] font-bold text-center mb-8 lg:mb-10 leading-tight tracking-tight">
-      How's the sky looking today?
-    </h1>
+        <div class="relative">
+          <button
+            id="unitsBtn"
+            class="flex items-center gap-2 bg-neutral-800 hover:bg-neutral-700 px-4 py-2.5 rounded-lg text-sm font-medium transition">
+            <img src="assets/images/icon-units.svg" alt="" class="w-4 h-4" />
+            Units
+            <svg class="w-4 h-4 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
 
-    <!-- Search -->
-    <div class="relative max-w-2xl mx-auto mb-10 lg:mb-14">
-      <div class="flex flex-col sm:flex-row gap-3">
-        <div class="relative flex-1">
-          <img src="assets/images/icon-search.svg" alt="" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 opacity-60 pointer-events-none">
-          <input 
-            id="searchInput" 
-            type="text" 
-            placeholder="Search for a place..." 
-            class="w-full bg-neutral-800 border border-neutral-600 rounded-xl py-3.5 pl-12 pr-4 text-white placeholder-neutral-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-          >
-          <ul id="suggestions" class="hidden absolute left-0 right-0 top-full mt-2 bg-neutral-800 border border-neutral-600 rounded-xl overflow-hidden z-40 max-h-60 overflow-y-auto shadow-xl"></ul>
-        </div>
-        <button id="searchBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold px-8 py-3.5 rounded-xl transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-neutral-900">
-          Search
-        </button>
-      </div>
-    </div>
+          <div
+            id="unitsMenu"
+            class="hidden absolute right-0 mt-2 w-64 bg-neutral-800 border border-neutral-600 rounded-xl shadow-2xl z-50 overflow-hidden">
+            <div class="px-4 py-3 border-b border-neutral-700">
+              <p class="text-sm font-medium" id="unitsHeader">Switch to Imperial</p>
+            </div>
 
-    <!-- Loading -->
-    <div id="loading" class="hidden text-center py-20">
-      <img src="assets/images/icon-loading.svg" alt="Loading" class="w-12 h-12 mx-auto animate-spin">
-      <p class="mt-4 text-neutral-300">Loading weather...</p>
-    </div>
-
-    <!-- Error -->
-    <div id="error" class="hidden text-center py-16">
-      <img src="assets/images/icon-error.svg" alt="Error" class="w-12 h-12 mx-auto mb-4 opacity-80">
-      <p class="text-xl font-semibold mb-2">Something went wrong</p>
-      <p id="errorMsg" class="text-neutral-300 mb-6"></p>
-      <button id="retryBtn" class="bg-blue-500 hover:bg-blue-700 px-6 py-2.5 rounded-xl font-medium transition flex items-center gap-2 mx-auto">
-        <img src="assets/images/icon-retry.svg" alt="" class="w-4 h-4">
-        Try again
-      </button>
-    </div>
-
-    <!-- Main Content -->
-    <div id="content" class="hidden">
-      <div class="grid grid-cols-1 xl:grid-cols-[1fr_320px] gap-6 lg:gap-8">
-
-        <!-- Left Column -->
-        <div class="space-y-6">
-
-          <!-- Current Weather Card -->
-          <div class="relative overflow-hidden rounded-2xl p-6 sm:p-8"
-               style="background: linear-gradient(135deg, #4658A9 0%, #3D3A8A 50%, #2A2768 100%);">
-            <div class="absolute inset-0 opacity-20 pointer-events-none"
-                 style="background-image: radial-gradient(circle, #ffffff 1px, transparent 1px); background-size: 20px 20px;"></div>
-
-            <div class="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
-              <div>
-                <h2 id="location" class="text-2xl sm:text-3xl font-bold">Berlin, Germany</h2>
-                <p id="date" class="text-neutral-200 mt-1.5 text-[15px]">Wednesday, Aug 12, 2026</p>
+            <div class="px-4 py-3">
+              <p class="text-xs text-neutral-300 mb-2">Temperature</p>
+              <div class="space-y-1">
+                <button
+                  data-unit="temp"
+                  data-value="celsius"
+                  class="unit-btn w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm hover:bg-neutral-700">
+                  <span>Celsius (°C)</span>
+                  <img src="assets/images/icon-checkmark.svg" alt="" class="w-4 h-4 checkmark" />
+                </button>
+                <button
+                  data-unit="temp"
+                  data-value="fahrenheit"
+                  class="unit-btn w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm hover:bg-neutral-700 text-neutral-300">
+                  <span>Fahrenheit (°F)</span>
+                  <img src="assets/images/icon-checkmark.svg" alt="" class="w-4 h-4 checkmark hidden" />
+                </button>
               </div>
+            </div>
 
-              <div class="flex items-center gap-5">
-                <img id="icon" src="assets/images/icon-sunny.webp" alt="Weather icon" class="w-20 h-20 sm:w-24 sm:h-24 drop-shadow-lg">
-                <span id="temp" class="font-display text-6xl sm:text-7xl font-bold tracking-tighter">25°</span>
+            <div class="px-4 py-3 border-t border-neutral-700">
+              <p class="text-xs text-neutral-300 mb-2">Wind Speed</p>
+              <div class="space-y-1">
+                <button
+                  data-unit="wind"
+                  data-value="kmh"
+                  class="unit-btn w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm hover:bg-neutral-700">
+                  <span>km/h</span>
+                  <img src="assets/images/icon-checkmark.svg" alt="" class="w-4 h-4 checkmark" />
+                </button>
+                <button
+                  data-unit="wind"
+                  data-value="mph"
+                  class="unit-btn w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm hover:bg-neutral-700 text-neutral-300">
+                  <span>mph</span>
+                  <img src="assets/images/icon-checkmark.svg" alt="" class="w-4 h-4 checkmark hidden" />
+                </button>
+              </div>
+            </div>
+
+            <div class="px-4 py-3 border-t border-neutral-700">
+              <p class="text-xs text-neutral-300 mb-2">Precipitation</p>
+              <div class="space-y-1">
+                <button
+                  data-unit="precip"
+                  data-value="mm"
+                  class="unit-btn w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm hover:bg-neutral-700">
+                  <span>Millimeters (mm)</span>
+                  <img src="assets/images/icon-checkmark.svg" alt="" class="w-4 h-4 checkmark" />
+                </button>
+                <button
+                  data-unit="precip"
+                  data-value="inch"
+                  class="unit-btn w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm hover:bg-neutral-700 text-neutral-300">
+                  <span>Inches (in)</span>
+                  <img src="assets/images/icon-checkmark.svg" alt="" class="w-4 h-4 checkmark hidden" />
+                </button>
               </div>
             </div>
           </div>
+        </div>
+      </header>
 
-          <!-- Stats -->
-          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            <div class="bg-neutral-800 rounded-xl p-5">
-              <p class="text-neutral-300 text-sm mb-2">Feels Like</p>
-              <p id="feelsLike" class="text-2xl font-semibold tracking-tight">23°</p>
+      <h1 class="font-display text-4xl sm:text-5xl lg:text-[52px] font-bold text-center mb-10">How's the sky looking today?</h1>
+
+      <div class="relative max-w-2xl mx-auto mb-12 lg:mb-16">
+        <div class="flex flex-col sm:flex-row gap-3">
+          <div class="relative flex-1">
+            <img src="assets/images/icon-search.svg" alt="" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 opacity-50" />
+            <input
+              id="searchInput"
+              type="text"
+              placeholder="Search for a place..."
+              class="w-full bg-neutral-800 border border-neutral-600 rounded-xl py-4 pl-12 pr-4 placeholder-neutral-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <ul
+              id="suggestions"
+              class="hidden absolute left-0 right-0 top-full mt-2 bg-neutral-800 border border-neutral-600 rounded-xl overflow-hidden z-40 max-h-60 overflow-y-auto"></ul>
+          </div>
+          <button id="searchBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-xl transition">Search</button>
+        </div>
+      </div>
+
+      <div id="loading" class="hidden text-center py-20">
+        <img src="assets/images/icon-loading.svg" alt="Loading" class="w-12 h-12 mx-auto animate-spin" />
+        <p class="mt-4 text-neutral-300">Loading weather...</p>
+      </div>
+
+      <div id="error" class="hidden text-center py-16">
+        <img src="assets/images/icon-error.svg" alt="Error" class="w-12 h-12 mx-auto mb-4" />
+        <p class="text-xl font-semibold mb-2">Something went wrong</p>
+        <p id="errorMsg" class="text-neutral-300 mb-6"></p>
+        <button id="retryBtn" class="bg-blue-500 hover:bg-blue-700 px-6 py-2.5 rounded-xl font-medium inline-flex items-center gap-2">
+          <img src="assets/images/icon-retry.svg" alt="" class="w-4 h-4" />
+          Try again
+        </button>
+      </div>
+
+      <div id="content" class="hidden">
+        <div class="grid grid-cols-1 xl:grid-cols-[1fr_340px] gap-8">
+          <div class="space-y-6">
+            <div
+              class="relative overflow-hidden rounded-2xl p-7 sm:p-8"
+              style="background: linear-gradient(160deg, #4a5bc7 0%, #3b3a9c 50%, #2c2a70 100%)">
+              <div
+                class="absolute inset-0 opacity-15"
+                style="background-image: radial-gradient(circle, white 1px, transparent 1px); background-size: 20px 20px"></div>
+
+              <div class="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+                <div>
+                  <h2 id="location" class="text-2xl sm:text-3xl font-bold">Berlin, Germany</h2>
+                  <p id="date" class="text-neutral-200 mt-1.5">Tuesday, Aug 5, 2025</p>
+                </div>
+                <div class="flex items-center gap-5">
+                  <img id="icon" src="assets/images/icon-sunny.webp" alt="" class="w-20 h-20 sm:w-24 sm:h-24" />
+                  <span id="temp" class="font-display text-6xl sm:text-7xl font-bold tracking-tighter">20°</span>
+                </div>
+              </div>
             </div>
-            <div class="bg-neutral-800 rounded-xl p-5">
-              <p class="text-neutral-300 text-sm mb-2">Humidity</p>
-              <p id="humidity" class="text-2xl font-semibold tracking-tight">31%</p>
+
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              <div class="bg-neutral-800 rounded-xl p-5">
+                <p class="text-neutral-300 text-sm mb-2">Feels Like</p>
+                <p id="feelsLike" class="text-2xl font-semibold">18°</p>
+              </div>
+              <div class="bg-neutral-800 rounded-xl p-5">
+                <p class="text-neutral-300 text-sm mb-2">Humidity</p>
+                <p id="humidity" class="text-2xl font-semibold">46%</p>
+              </div>
+              <div class="bg-neutral-800 rounded-xl p-5">
+                <p class="text-neutral-300 text-sm mb-2">Wind</p>
+                <p id="wind" class="text-2xl font-semibold">14 km/h</p>
+              </div>
+              <div class="bg-neutral-800 rounded-xl p-5">
+                <p class="text-neutral-300 text-sm mb-2">Precipitation</p>
+                <p id="precip" class="text-2xl font-semibold">0 mm</p>
+              </div>
             </div>
-            <div class="bg-neutral-800 rounded-xl p-5">
-              <p class="text-neutral-300 text-sm mb-2">Wind</p>
-              <p id="wind" class="text-2xl font-semibold tracking-tight">6 km/h</p>
-            </div>
-            <div class="bg-neutral-800 rounded-xl p-5">
-              <p class="text-neutral-300 text-sm mb-2">Precipitation</p>
-              <p id="precip" class="text-2xl font-semibold tracking-tight">0.0 mm</p>
+
+            <div>
+              <h3 class="text-lg font-semibold mb-4">Daily forecast</h3>
+              <div id="daily" class="grid grid-cols-4 sm:grid-cols-7 gap-3"></div>
             </div>
           </div>
 
-          <!-- Daily Forecast -->
-          <div>
-            <h3 class="text-lg font-semibold mb-4">Daily forecast</h3>
-            <div id="daily" class="grid grid-cols-4 sm:grid-cols-7 gap-3"></div>
+          <div class="bg-neutral-800 rounded-2xl p-5">
+            <div class="flex items-center justify-between mb-5">
+              <h3 class="font-semibold text-lg">Hourly forecast</h3>
+              <div class="relative">
+                <button id="dayBtn" class="flex items-center gap-2 bg-neutral-700 hover:bg-neutral-600 px-3 py-1.5 rounded-lg text-sm">
+                  <span id="dayLabel">Tuesday</span>
+                  <svg class="w-4 h-4 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                <ul
+                  id="dayMenu"
+                  class="hidden absolute right-0 mt-2 w-40 bg-neutral-700 border border-neutral-600 rounded-xl overflow-hidden z-30"></ul>
+              </div>
+            </div>
+            <div id="hourly" class="space-y-3 max-h-[480px] overflow-y-auto"></div>
           </div>
         </div>
-
-        <!-- Right Column - Hourly -->
-        <div class="bg-neutral-800 rounded-2xl p-5 h-fit">
-          <div class="flex items-center justify-between mb-5">
-            <h3 class="font-semibold text-lg">Hourly forecast</h3>
-
-            <div class="relative">
-              <button id="dayBtn" class="flex items-center gap-1.5 bg-neutral-700 hover:bg-neutral-600 px-3 py-1.5 rounded-lg text-sm transition focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <span id="dayLabel">Wednesday</span>
-                <svg class="w-4 h-4 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                </svg>
-              </button>
-              <ul id="dayMenu" class="hidden absolute right-0 mt-2 w-40 bg-neutral-700 border border-neutral-600 rounded-xl overflow-hidden z-30 shadow-xl"></ul>
-            </div>
-          </div>
-
-          <div id="hourly" class="space-y-3 max-h-[480px] overflow-y-auto pr-1"></div>
-        </div>
-
       </div>
     </div>
-  </div>
 
-  <script src="app.js"></script>
-</body>
+    <script src="app.js"></script>
+  </body>
 </html>
