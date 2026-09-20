@@ -1,4 +1,4 @@
-# 🌤️ Weather Now
+#  Weather Now
 
 A clean, responsive weather app built with vanilla HTML, Tailwind CSS, and JavaScript.  
 Search any city, switch units, and explore daily + hourly forecasts — all powered by the free Open-Meteo API.
@@ -7,19 +7,19 @@ Search any city, switch units, and explore daily + hourly forecasts — all powe
 
 ---
 
-### ✨ Features
+###  Features
 
-- 🔍 Search any location with live suggestions
-- 🌡️ Current weather with feels like, humidity, wind & precipitation
-- 📅 7-day daily forecast
-- ⏰ Hourly forecast with day selector
-- ⚙️ Units toggle (Celsius/Fahrenheit, km/h/mph, mm/inches)
-- 📱 Fully responsive (mobile → desktop)
-- ⚡ Fast & lightweight — no frameworks
+-  Search any location with live suggestions
+-  Current weather with feels like, humidity, wind & precipitation
+-  7-day daily forecast
+-  Hourly forecast with day selector
+-  Units toggle (Celsius/Fahrenheit, km/h/mph, mm/inches)
+-  Fully responsive (mobile → desktop)
+-  Fast & lightweight — no frameworks
 
 ---
 
-### 🛠️ Built With
+###  Built With
 
 - HTML5
 - Tailwind CSS
@@ -28,7 +28,7 @@ Search any city, switch units, and explore daily + hourly forecasts — all powe
 
 ---
 
-### 🚀 Getting Started
+###  Getting Started
 
 1. Clone the repo or download the files
 2. Open `index.html` in your browser
@@ -39,10 +39,10 @@ That’s it. No build step required.
 # Optional: run with a local server
 npx serve .
 
-🎨 Design
+ Design
 This project is based on the Frontend Mentor - Weather App challenge.
 
-🙌 Credits
+ Credits
 
 * Design: Frontend Mentor
 * Weather data: Open-Meteo
